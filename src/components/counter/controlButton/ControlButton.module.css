@@ -1,0 +1,10 @@
+.controlButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid cyan;
+}
+

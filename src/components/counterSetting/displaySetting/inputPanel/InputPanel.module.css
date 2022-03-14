@@ -1,0 +1,25 @@
+.inputPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.inputPanel span {
+  color: cyan;
+}
+
+.input {
+  width: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  background-color: cyan;
+  outline: none;
+}
+
+.error {
+  background-color: crimson;
+  border: crimson;
+}

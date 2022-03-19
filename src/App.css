@@ -9,6 +9,10 @@
 
 .App-container {
   display: flex;
+  border: 5px solid cyan;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 

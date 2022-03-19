@@ -8,13 +8,20 @@ type PropsType = {
   maxInputValue: number
   ButtonDisabled: boolean
   displayError: boolean
+  panel: boolean
 }
 
 export const ControlButtonSetting = (props: PropsType) => {
 
+  let disabledMod = false
+
+  if(!props.panel) {
+    disabledMod = props.ButtonDisabled
+  }
+
   return (
     <div className={s.controlButton}>
-      <Button disabled={props.ButtonDisabled || props.displayError}
+      <Button disabled={disabledMod || props.displayError}
               title={'set'}
               callback={props.setValue}/>
     </div>

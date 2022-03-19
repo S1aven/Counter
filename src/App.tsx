@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/counter/Counter";
 import {CounterSetting} from "./components/counterSetting/CounterSetting";
+import {Button} from "./components/button/Button";
 
 function App() {
 
@@ -11,6 +12,9 @@ function App() {
   const [maxDisplayValue, setDisplayMaxValue] = useState<number>(0)
 
   const [currentValue, setCurrentValue] = useState<number>(minInputValue)
+
+  const [panel, setPanel] = useState<boolean>(false)
+  const [counterOption, setCounterOption] = useState<boolean>(true)
 
   //----------UseEffect
 
@@ -54,6 +58,7 @@ function App() {
     localStorage.setItem('maxValue', JSON.stringify(maxInputValue))
     localStorage.setItem('minValue', JSON.stringify(minInputValue))
     setCurrentValue(minInputValue)
+    setPanel(false)
   }
 
   //----------OnChangeInput
@@ -66,6 +71,19 @@ function App() {
   const onChangeMaxInputValue = (value: string) => {
     let numberValue = parseInt(value)
     setMaxValue(numberValue)
+  }
+
+  //-----------SwitchPanel
+
+  const switchPanel = () => {
+    setPanel(true)
+  }
+
+  //---------- CounterOption
+
+  const selectCounter = () => {
+    setCounterOption(!counterOption)
+    setPanel(false)
   }
 
   //-----------Styles
@@ -90,24 +108,61 @@ function App() {
 
   return (
     <div className="App">
-      <CounterSetting
-        setValue={setValue}
-        onChangeMinInputValue={onChangeMinInputValue}
-        onChangeMaxInputValue={onChangeMaxInputValue}
-        minInputValue={minInputValue}
-        maxInputValue={maxInputValue}
-        ButtonDisabled={ButtonDisabled}
-        displayError={displayError}
-      />
-      <Counter
-        currentValue={currentValue}
-        increment={increment}
-        reset={reset}
-        minDisplayValue={minDisplayValue}
-        maxDisplayValue={maxDisplayValue}
-        displayError={displayError}
-        displayEnter={displayEnter}
-      />
+      <Button callback={selectCounter}>Select the type of counter</Button>
+      <div className={"App-container"}>
+        {counterOption ?
+          <>
+            <CounterSetting
+              setValue={setValue}
+              onChangeMinInputValue={onChangeMinInputValue}
+              onChangeMaxInputValue={onChangeMaxInputValue}
+              minInputValue={minInputValue}
+              maxInputValue={maxInputValue}
+              ButtonDisabled={ButtonDisabled}
+              displayError={displayError}
+              panel={panel}
+            />
+            <Counter
+              currentValue={currentValue}
+              increment={increment}
+              reset={reset}
+              minDisplayValue={minDisplayValue}
+              maxDisplayValue={maxDisplayValue}
+              displayError={displayError}
+              displayEnter={displayEnter}
+              switchPanel={switchPanel}
+              counterOption={counterOption}
+            />
+          </>
+          :
+          <>
+            {panel ?
+              <CounterSetting
+                setValue={setValue}
+                onChangeMinInputValue={onChangeMinInputValue}
+                onChangeMaxInputValue={onChangeMaxInputValue}
+                minInputValue={minInputValue}
+                maxInputValue={maxInputValue}
+                ButtonDisabled={ButtonDisabled}
+                displayError={displayError}
+                panel={panel}
+              />
+              :
+              <Counter
+                currentValue={currentValue}
+                increment={increment}
+                reset={reset}
+                minDisplayValue={minDisplayValue}
+                maxDisplayValue={maxDisplayValue}
+                displayError={displayError}
+                displayEnter={displayEnter}
+                switchPanel={switchPanel}
+                counterOption={counterOption}
+              />
+            }
+          </>
+        }
+      </div>
     </div>
   );
 }

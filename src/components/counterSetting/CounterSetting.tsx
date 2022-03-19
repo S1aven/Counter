@@ -11,6 +11,7 @@ type PropsType = {
   maxInputValue: number
   ButtonDisabled: boolean
   displayError: boolean
+  panel: boolean
 }
 
 export const CounterSetting = (props: PropsType) => {
@@ -29,6 +30,7 @@ export const CounterSetting = (props: PropsType) => {
         maxInputValue={props.maxInputValue}
         ButtonDisabled={props.ButtonDisabled}
         displayError={props.displayError}
+        panel={props.panel}
       />
     </div>
   );

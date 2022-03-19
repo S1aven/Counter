@@ -6,10 +6,12 @@ type PropsType = {
   minDisplayValue: number
   maxDisplayValue: number
   currentValue: number
-  increment: () => void
-  reset: () => void
   displayError: boolean
   displayEnter: boolean
+  counterOption?: boolean
+  increment: () => void
+  reset: () => void
+  switchPanel: () => void
 }
 
 export const ControlButton = (props: PropsType) => {
@@ -26,6 +28,7 @@ export const ControlButton = (props: PropsType) => {
         || props.displayEnter}
               callback={props.reset}
               title={'reset'}/>
+      {!props.counterOption && <Button title={'set'} callback={props.switchPanel}/>}
     </div>
   );
 };

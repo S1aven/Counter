@@ -7,10 +7,12 @@ export type PropsType = {
   currentValue: number
   minDisplayValue: number
   maxDisplayValue: number
-  increment: () => void
-  reset: () => void
   displayError: boolean
   displayEnter: boolean
+  counterOption?: boolean
+  increment: () => void
+  reset: () => void
+  switchPanel: () => void
 }
 
 export const Counter = (props: PropsType) => {
@@ -30,6 +32,8 @@ export const Counter = (props: PropsType) => {
         maxDisplayValue={props.maxDisplayValue}
         displayError={props.displayError}
         displayEnter={props.displayEnter}
+        switchPanel={props.switchPanel}
+        counterOption={props.counterOption}
       />
     </div>
   );
